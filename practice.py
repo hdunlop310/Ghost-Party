@@ -40,7 +40,7 @@ def ghost(pos):
     if pos == 0:
         screen.blit(white_ghost, (132, 503))
     if pos == 1:
-        screen.blit(green_ghost, (427, 503))
+        screen.blit(green_ghost, (455, 503))
     if pos == 2:
         screen.blit(orange_ghost, (780, 503))
     if pos == 3:
@@ -81,10 +81,10 @@ while game_running:
                 mixer.music.unpause()
 
     screen.fill(colour)
-    pygame.draw.rect(screen, (255, 255, 255), [(0, 470), (350, 10)])
-    pygame.draw.rect(screen, (82, 172, 0), [(350, 470), (350, 10)])
-    pygame.draw.rect(screen, (242, 143, 28), [(650, 470), (350, 10)])
-    pygame.draw.rect(screen, (110, 58, 158), [(950, 470), (350, 10)])
+    pygame.draw.rect(screen, (255, 255, 255), [(0, 470), (325, 10)])
+    pygame.draw.rect(screen, (82, 172, 0), [(325, 470), (325, 10)])
+    pygame.draw.rect(screen, (242, 143, 28), [(650, 470), (325, 10)])
+    pygame.draw.rect(screen, (110, 58, 158), [(975, 470), (325, 10)])
     ghost(ghost_pos)
 
     clock.tick(60)
