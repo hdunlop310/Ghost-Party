@@ -1,4 +1,5 @@
 import pygame, sys, random
+from datetime import datetime, time
 from pygame import mixer
 
 pygame.init()
@@ -34,6 +35,10 @@ purple_ghost = pygame.transform.scale(purple_ghost, (61, 82))
 
 ghost_pos = 0
 
+start = datetime.now()
+last_second = 0
+
+guy1 = None
 
 # pos = 0:"white", 1:"green", 2:"orange", 3:"purple"
 def ghost(pos):
@@ -46,9 +51,56 @@ def ghost(pos):
     if pos == 3:
         screen.blit(purple_ghost, (1107, 503))
 
+def guyGenerate(which_guy):
+    if which_guy == 0:
+        white_guy = pygame.image.load('ghosts/white ghost.png').convert_alpha()
+        white_guy = pygame.transform.scale(white_guy, (61, 82))
+        pos = (132, -41)
+        return white_guy
+    if which_guy == 1:
+        green_guy = pygame.image.load('ghosts/green ghost.png').convert_alpha()
+        green_guy = pygame.transform.scale(green_guy, (61, 82))
+        pos = (455, 41)
+        return green_guy
+    if which_guy == 2:
+        orange_guy = pygame.image.load('ghosts/orange ghost.png').convert_alpha()
+        orange_guy = pygame.transform.scale(orange_guy, (61, 82))
+        pos = (780, 41)
+        return orange_guy
+    if which_guy == 3:
+        purple_guy = pygame.image.load('ghosts/purple ghost.png').convert_alpha()
+        purple_guy = pygame.transform.scale(purple_guy, (61, 82))
+        pos = (1107, 41)
+        return purple_guy
+
+
+orange_ghost = pygame.image.load('ghosts/orange ghost.png').convert_alpha()
+orange_ghost = pygame.transform.scale(orange_ghost, (61, 82))
+
+purple_ghost = pygame.image.load('ghosts/purple ghost.png').convert_alpha()
+purple_ghost = pygame.transform.scale(purple_ghost, (61, 82))
+        
+def fallGuy(pos):
+    #which_guy = random.randint(0,3)
+    which_guy = 0
+    
 
 game_running = True
 while game_running:
+
+
+    timer = str(datetime.now() - start)
+    seconds = int(timer[5:7])
+    minutes = int(timer[3])
+    if minutes == 0:
+        timer = seconds
+    if minutes == 1:
+        timer = seconds + 60
+    if minutes == 2:
+        timer = seconds + 120
+
+    
+        
     for event in pygame.event.get():
         if event.type == pygame.QUIT:
             game_running = False
@@ -85,10 +137,25 @@ while game_running:
     pygame.draw.rect(screen, (82, 172, 0), [(325, 470), (325, 10)])
     pygame.draw.rect(screen, (242, 143, 28), [(650, 470), (325, 10)])
     pygame.draw.rect(screen, (110, 58, 158), [(975, 470), (325, 10)])
+    
     ghost(ghost_pos)
 
-    clock.tick(60)
+    if last_second != timer:
+        random_guy = random.randint(0,3)
+        guy1 = guyGenerate(random_guy)
+        last_second = timer
+    if guy1 != None:
+        if random_guy == 0:
+            pos = (132, -82)
+        if random_guy == 1:
+            pos = (455, -82)
+        if random_guy == 2:
+            pos = (780, -82)
+        if random_guy == 3:
+            pos = (1107, -82)
+        screen.blit(guy1, pos)
 
+    clock.tick(60)
     pygame.display.update()
 
 pygame.quit()
