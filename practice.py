@@ -9,12 +9,26 @@ height = 600
 colour = (49,49,49)
 clock = pygame.time.Clock()
 
-ghost_image = pygame.image.load('ghost.png')
+player_white = pygame.image.load('ghosts/white ghost.png')
+
+white_ghost = pygame.image.load('ghosts/white ghost.png')
+green_ghost = pygame.image.load('ghosts/green ghost.png')
+orange_ghost = pygame.image.load('ghosts/orange ghost.png')
+purple_ghost = pygame.image.load('ghosts/purple ghost.png')
+
 ghostx = 30
 ghosty = 30
 
-def ghost(x, y):
-    screen.blit(ghost_image, (x, y))
+#x = x-coords, y = y-coords, which_ghost = "white", "green", "orange", "purple"
+def ghost(x, y, which_ghost):
+    if(which_ghost == "white"):
+        screen.blit(white_ghost, (x, y))
+    if(which_ghost == "green"):
+        screen.blit(green_ghost, (x, y))
+    if(which_ghost == "orange"):
+        screen.blit(orange_ghost, (x, y))
+    if(which_ghost == "purple"):
+        screen.blit(purple_ghost, (x, y))
 
 game_running = True
 while game_running:
@@ -27,17 +41,19 @@ while game_running:
             if event.key == pygame.K_ESCAPE:
                 pygame.quit()
                 sys.exit()
-            elif event.key == pygame.K_a:
+                
+            if event.key == pygame.K_a:
                 print("player pressed a")
                 #change variable holding dimentions/colour
                 ghostx -= 10
-            elif event.key == pygame.K_d:
+                
+            if event.key == pygame.K_d:
                 ghostx += 10
                 print("player pressed d")
                 #change variable holding dimentions/colour
 
     screen.fill(colour)
-    ghost(ghostx, ghosty)
+    ghost(ghostx, ghosty, "orange")
 
     clock.tick(60)
 
