@@ -8,7 +8,11 @@ width = 1300
 height = 600
 colour = (49,49,49)
 clock = pygame.time.Clock()
-
+music = 'sounds/mastered maybe (Mastered with Thunder at 50pct).wav'
+pygame.mixer.init()
+pygame.mixer.music.load(music)
+pygame.mixer.music.play()
+pygame.event.wait()
 player_white = pygame.image.load('ghosts/white ghost.png')
 
 white_ghost = pygame.image.load('ghosts/white ghost.png')
