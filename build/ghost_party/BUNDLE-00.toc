@@ -1,3 +1,0 @@
-([('ghost_party',
-   '/Users/dunlop/Documents/ghost-party/dist/ghost_party',
-   'EXECUTABLE')],)
