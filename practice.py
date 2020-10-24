@@ -78,13 +78,11 @@ orange_ghost = pygame.transform.scale(orange_ghost, (61, 82))
 purple_ghost = pygame.image.load('ghosts/purple ghost.png').convert_alpha()
 purple_ghost = pygame.transform.scale(purple_ghost, (61, 82))
 
-
-def fallGuy(guy):
-    pass
-
-
 move = False
 pos = None
+random_guy = 0
+score = 0
+got_point = False
 
 game_running = True
 while game_running:
@@ -142,6 +140,7 @@ while game_running:
         move = False
         random_guy = random.randint(0, 3)
         guy1 = guyGenerate(random_guy)
+        got_point = False
         last_second = timer
     if (guy1 != None) and (move == False):
         if random_guy == 0:
@@ -155,13 +154,19 @@ while game_running:
         screen.blit(guy1, pos)
         move = True
     if (guy1 != None) and (move == True):
-        print("hello")
         y = pos[1]
         y += 15
         pos = (pos[0], y)
         screen.blit(guy1, pos)
 
+    if pos != None:
+        if (pos[1] > 470 and pos[1] < 600 and got_point == False):
+            if ghost_pos == random_guy:
+                score += 1
+                got_point = True
 
+
+    print(score)
     clock.tick(60)
     pygame.display.update()
 
