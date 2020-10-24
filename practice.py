@@ -31,19 +31,16 @@ while game_running:
                 print("player pressed a")
                 #change variable holding dimentions/colour
                 ghostx += 10
-                pygame.display.update()
             elif event.key == pygame.K_d:
                 print("player pressed d")
                 #change variable holding dimentions/colour
-                pygame.display.update()
-        ghost(ghostx, ghosty)
-        pygame.display.update()
 
-    screen.fill((colour))
-
+    screen.fill(colour)
+    ghost(ghostx, ghosty)
     #pygame.draw.rect(screen, (0, 0, 255), [(30, 30), (30, 30)])
-    pygame.display.flip()
+
     clock.tick(60)
+
     pygame.display.update()
 
 pygame.quit()
